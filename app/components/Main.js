@@ -1,5 +1,8 @@
 let React = require('react');
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+import Loginsignup from './children/LoginSignup';
+// import Posts from './children/Posts'
+// import Profile from './children/Profile'
 
 export default class Main extends React.Component {
 
@@ -13,17 +16,17 @@ export default class Main extends React.Component {
 
         return (
             <div className="Main">
-                <h1>Let's search for an article!</h1>
+                <h1>Let's get some help!</h1>
 
-                <ul>
+                <Link to="/login"><button>Login</button></Link>
+                <Link to="/posts"><button>Posts</button></Link>
+                <Link to="/profile"><button>Profile</button></Link>
 
-                    THIS IS THE NAV BAR
-
-                </ul>
-
-
-
-                {this.props.children}
+                <Route path='/login' component={Loginsignup}>
+                    {this.props.children}
+                </Route>
+                {/*<Route path='/posts' component={Posts}/>*/}
+                {/*<Route path='/profile' component={Profile}/>*/}
 
             </div>
         );

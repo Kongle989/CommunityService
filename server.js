@@ -21,6 +21,10 @@ db.once("open", () => {
     console.log("Mongoose connection successful.");
 });
 
+app.get('*', (req, res) => {
+    res.redirect('/');
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log("App running");
 });

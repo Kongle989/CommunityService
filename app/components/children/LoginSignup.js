@@ -5,7 +5,7 @@ import SignUp from './grandchildren/SignUp';
 import {Link} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 
-export default class Search extends React.Component {
+export default class Loginsignup extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,18 +17,23 @@ export default class Search extends React.Component {
             zipcode: ""
         };
 
-        this.setLogin = this.setLogin().bind(this);
-        this.setSignup = this.setSignup().bind(this);
+        this.setLogin = this.setLogin.bind(this);
+        this.setSignup = this.setSignup.bind(this);
 
     }
 
-    componentDidUpdate() {
-        helpers.login(
-            this.state.username,
-            this.state.password)
-            .then(() => {
-                this.props.history.push('/posts');
-            });
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.username !== this.state.username ||
+            prevState.password !== this.state.password) {
+
+            helpers.login(
+                this.state.username,
+                this.state.password)
+                .then(() => {
+                    this.props.history.push('/posts');
+                });
+
+        }
     }
 
     setLogin(username, password) {
@@ -55,13 +60,13 @@ export default class Search extends React.Component {
                 <Link to="/login">
                     <button>Login</button>
                 </Link>
-                <Link to="/signup">
+                <Link to="/login/signup">
                     <button>Sign Up</button>
                 </Link>
-                <Route path="/login"
+                <Route exact path="/login"
                        setLogin={this.setLogin}
                        component={Login}/>
-                <Route path="/signup"
+                <Route path="/login/signup"
                        setSignup={this.setSignup}
                        component={SignUp}/>
 

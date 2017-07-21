@@ -66,18 +66,21 @@ export default class Login extends React.Component {
                            onChange={this.handleChange}
                            name="conpassword"
                            required/>
+                    <label>Name</label>
                     <input type="text"
                            id="name"
                            value={this.state.name}
                            onChange={this.handleChange}
                            name="name"
                            required/>
+                    <label>Age</label>
                     <input type="number"
                            id="age"
                            value={this.state.age}
                            onChange={this.handleChange}
                            name="age"
                            required/>
+                    <label>Zip Code</label>
                     <input type="number"
                            id="zipcode"
                            value={this.state.zipcode}
