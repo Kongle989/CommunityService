@@ -2,10 +2,9 @@ import React from 'react';
 import helpers from '../utils/helpers';
 import Login from './grandchildren/Login';
 import SignUp from './grandchildren/SignUp';
-import {Link} from 'react-router-dom';
-import {Route} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 
-export default class Loginsignup extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,22 +23,27 @@ export default class Loginsignup extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.username !== this.state.username ||
-            prevState.password !== this.state.password) {
-
-            helpers.login(
-                this.state.username,
-                this.state.password)
+            prevState.password !== this.state.password &&
+            prevState.name === this.state.name) {
+            helpers.login(this.state)
                 .then(() => {
                     this.props.history.push('/posts');
                 });
-
+        }
+        if (prevState.username !== this.state.username ||
+            prevState.password !== this.state.password &&
+            prevState.name !== this.state.name) {
+            helpers.signup(this.state)
+                .then(() => {
+                    this.props.history.push('/login');
+                })
         }
     }
 
     setLogin(username, password) {
         this.setState({
             username: username,
-            startDate: password
+            password: password
         });
     }
 
@@ -64,11 +68,9 @@ export default class Loginsignup extends React.Component {
                     <button>Sign Up</button>
                 </Link>
                 <Route exact path="/login"
-                       setLogin={this.setLogin}
-                       component={Login}/>
+                       render={() => <Login setLogin={this.setLogin}/>}/>
                 <Route path="/login/signup"
-                       setSignup={this.setSignup}
-                       component={SignUp}/>
+                       render={() => <SignUp setSignup={this.setSignup}/>}/>
 
             </div>
         );

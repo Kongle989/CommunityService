@@ -1,4 +1,4 @@
-let React = require('react');
+import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import Loginsignup from './children/LoginSignup';
 // import Posts from './children/Posts'
@@ -22,9 +22,7 @@ export default class Main extends React.Component {
                 <Link to="/posts"><button>Posts</button></Link>
                 <Link to="/profile"><button>Profile</button></Link>
 
-                <Route path='/login' component={Loginsignup}>
-                    {this.props.children}
-                </Route>
+                <Route path='/login' component={Loginsignup}/>
                 {/*<Route path='/posts' component={Posts}/>*/}
                 {/*<Route path='/profile' component={Profile}/>*/}
 

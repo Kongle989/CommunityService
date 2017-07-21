@@ -3,14 +3,15 @@ let express = require("express"),
     logger = require("morgan"),
     mongoose = require("mongoose"),
     app = express(),
-    url = 'mongodb://localhost/helpinghand';
+    url = 'mongodb://localhost/helpinghand',
+    users = require('./models/users');
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-mongoose.Promise = Promise;
 app.use(express.static("public"));
 
+mongoose.Promise = Promise;
 mongoose.connect(url);
 
 let db = mongoose.connection;
@@ -19,6 +20,16 @@ db.on("error", function (error) {
 });
 db.once("open", () => {
     console.log("Mongoose connection successful.");
+});
+
+app.post('/create', (req, res) => {
+    users.create({
+        username: req.body.username,
+        password: req.body.password,
+        name: req.body.name,
+        age: req.body.age,
+        zip: req.body.zip
+    })
 });
 
 app.get('*', (req, res) => {

@@ -1,4 +1,4 @@
-let React = require('react');
+import React from 'react';
 import helpers from '../utils/helpers';
 import Form from './grandchildren/Form';
 
