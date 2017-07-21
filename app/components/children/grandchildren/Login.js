@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.setTerm(
+        this.props.setLogin(
             this.state.username,
             this.state.password
         );
