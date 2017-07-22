@@ -12,6 +12,12 @@ export default class extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            username: nextProps.username
+        })
+    }
+
     handleChange(event) {
         let newState = {};
         newState[event.target.id] = event.target.value;

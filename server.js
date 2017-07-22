@@ -22,14 +22,24 @@ db.once("open", () => {
     console.log("Mongoose connection successful.");
 });
 
-app.post('/create', (req, res) => {
-    users.create({
-        username: req.body.username,
-        password: req.body.password,
-        name: req.body.name,
-        age: req.body.age,
-        zip: req.body.zip
+app.get('/logon', (req, res) => {
+    console.log(req.query);
+    users.findOne(req.query).then(user => {
+        console.log('the user', user);
+        if (user)
+            res.send({
+                id: user._id,
+                name: user.name,
+                age: user.age,
+                zip: user.zip
+            });
+        else
+            res.send(req.query.username);
     })
+});
+
+app.post('/create', (req, res) => {
+    users.create(req.body);
 });
 
 app.get('*', (req, res) => {

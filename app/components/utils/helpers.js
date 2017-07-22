@@ -2,13 +2,19 @@ import axios from 'axios';
 
 const helpers = {
     login: data => {
-        console.log('im logging in', data);
+        return axios.get('/logon', {
+            params: {
+                username: data.username,
+                password: data.password
+            }
+        }).then(data => {
+                return data.data;
+        });
 
     },
 
     signup: data => {
-        console.log('im signing up', data);
-        // return axios.post('/create', data);
+        return axios.post('/create', data);
     },
 
     usernamecheck: () => {

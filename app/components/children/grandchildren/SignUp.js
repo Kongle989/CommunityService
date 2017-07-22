@@ -10,7 +10,7 @@ export default class extends React.Component {
             conpassword: "",
             name: "",
             age: "",
-            zipcode: ""
+            zip: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,16 +29,8 @@ export default class extends React.Component {
             this.state.password,
             this.state.name,
             this.state.age,
-            this.state.zipcode
+            this.state.zip
         );
-        this.setState({
-            username: "",
-            password: "",
-            conpassword: "",
-            name: "",
-            age: "",
-            zipcode: ""
-        });
     }
 
     render() {
@@ -92,10 +84,10 @@ export default class extends React.Component {
                     <div>
                         <label>Zip Code</label>
                         <input type="number"
-                               id="zipcode"
-                               value={this.state.zipcode}
+                               id="zip"
+                               value={this.state.zip}
                                onChange={this.handleChange}
-                               name="zipcode"
+                               name="zip"
                                min="501"
                                max="99950"
                                required/>
