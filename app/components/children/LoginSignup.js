@@ -57,10 +57,8 @@ export default class extends React.Component {
                 zip: zip
             },
             () => {
-                helpers.signup(this.state)
-                    .then(() => {
-                        this.props.history.push('/login');
-                    })
+                helpers.signup(this.state);
+                this.props.history.push('/login');
             }
         );
 
@@ -73,9 +71,9 @@ export default class extends React.Component {
                 <div className="logbutton"><Link to="/login">
                     <button>Login</button>
                 </Link>
-                <Link to="/login/signup">
-                    <button>Sign Up</button>
-                </Link></div>
+                    <Link to="/login/signup">
+                        <button>Sign Up</button>
+                    </Link></div>
                 <Route exact path="/login"
                        render={() => <Login username={this.state.username}
                                             setLogin={this.setLogin}/>}/>

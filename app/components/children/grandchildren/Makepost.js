@@ -46,7 +46,7 @@ export default class extends React.Component {
                     </div>
                     <div className="formelement">
                         <label>Details</label>
-                        <input type="text"
+                        <textarea
                                id="content"
                                value={this.state.content}
                                onChange={this.handleChange}
