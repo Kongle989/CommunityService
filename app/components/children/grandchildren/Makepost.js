@@ -24,6 +24,10 @@ export default class extends React.Component {
             title: this.state.title,
             content: this.state.content,
             uid: ""
+        });
+        this.setState({
+            title: "",
+            content: ""
         })
     }
 
@@ -31,7 +35,7 @@ export default class extends React.Component {
         return (
             <div className="makepostform">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className="formelement">
                         <label>Title</label>
                         <input type="text"
                                id="title"
@@ -40,7 +44,7 @@ export default class extends React.Component {
                                name="title"
                                required/>
                     </div>
-                    <div>
+                    <div className="formelement">
                         <label>Details</label>
                         <input type="text"
                                id="content"

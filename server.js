@@ -44,22 +44,30 @@ app.post('/create', (req, res) => {
 });
 
 app.get('/getposts', (req,res) => {
-    posts.find().populate('uid').then(posts => {
-        console.log(posts);
+    posts.find().populate('uid').sort('-postdate').then(posts => {
+        console.log(posts[0].postdate);
+        let postlist =[];
+        posts.forEach(post =>{
+            postlist.push({
+                title: post.title,
+                content: post.content,
+            postdate: post.postdate,
+            poster: post.uid.name
+            })
+        });
+        res.send(postlist);
     })
 });
 
 app.post('/makepost', (req, res) => {
-   console.log(req.body);
+    console.log('i making', req.body);
    posts.create({
        title: req.body.title,
        content: req.body.content,
        uid: mongoose.Types.ObjectId(req.body.uid)
    }).then(doc => {
-       console.log('post doc', doc);
        users.update({_id: doc.uid}, {$push: {pid: doc._id}})
            .then(userdoc=> {
-               console.log('userdoc', userdoc);
            })
    })
 });

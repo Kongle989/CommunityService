@@ -10,8 +10,6 @@ export default class Main extends React.Component {
 
         super(props);
 
-        console.log(this);
-
         this.state = {
             id: "",
             name: "",
@@ -57,9 +55,9 @@ export default class Main extends React.Component {
                     <Link to="/posts">
                         <button>Posts</button>
                     </Link>
-                    <Link to="/profile">
-                        <button>Profile</button>
-                    </Link>
+                    {/*<Link to="/profile">*/}
+                        {/*<button>Profile</button>*/}
+                    {/*</Link>*/}
                 </div>
             }
         }
@@ -75,7 +73,7 @@ export default class Main extends React.Component {
                            history={history}
                            setUser={this.setUser}/>}/>
                 <Route exact path='/posts'
-                       render={() => <Posts user={this.state} />}/>
+                       render={({history}) => <Posts user={this.state} history={history} />}/>
                 {/*<Route path='/profile' component={Profile}/>*/}
 
             </div>

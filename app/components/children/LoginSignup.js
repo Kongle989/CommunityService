@@ -70,12 +70,12 @@ export default class extends React.Component {
         return (
             <div className="LoginSignup">
 
-                <Link to="/login">
+                <div className="logbutton"><Link to="/login">
                     <button>Login</button>
                 </Link>
                 <Link to="/login/signup">
                     <button>Sign Up</button>
-                </Link>
+                </Link></div>
                 <Route exact path="/login"
                        render={() => <Login username={this.state.username}
                                             setLogin={this.setLogin}/>}/>

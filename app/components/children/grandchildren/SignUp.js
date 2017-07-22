@@ -37,7 +37,7 @@ export default class extends React.Component {
         return (
             <div className="signupform">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className="formelement">
                         <label>Username</label>
                         <input type="text"
                                id="username"
@@ -46,7 +46,7 @@ export default class extends React.Component {
                                name="username"
                                required/>
                     </div>
-                    <div>
+                    <div className="formelement">
                         <label>Password</label>
                         <input type="password"
                                id="password"
@@ -55,14 +55,14 @@ export default class extends React.Component {
                                name="password"
                                required/>
                     </div>
-                    <div><label>Confirm Password</label>
+                    <div className="formelement"><label>Confirm Password</label>
                         <input type="password"
                                id="conpassword"
                                value={this.state.conpassword}
                                onChange={this.handleChange}
                                name="conpassword"
                                required/></div>
-                    <div>
+                    <div className="formelement">
                         <label>Name</label>
                         <input type="text"
                                id="name"
@@ -71,7 +71,7 @@ export default class extends React.Component {
                                name="name"
                                required/>
                     </div>
-                    <div>
+                    <div className="formelement">
                         <label>Age</label>
                         <input type="number"
                                id="age"
@@ -81,7 +81,7 @@ export default class extends React.Component {
                                min="18"
                                required/>
                     </div>
-                    <div>
+                    <div className="formelement">
                         <label>Zip Code</label>
                         <input type="number"
                                id="zip"

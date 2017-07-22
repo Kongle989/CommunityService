@@ -40,7 +40,7 @@ export default class extends React.Component {
         return (
             <div className="loginform">
                 <form onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className="formelement">
                         <label>Username</label>
                         <input type="text"
                                id="username"
@@ -49,7 +49,7 @@ export default class extends React.Component {
                                name="username"
                                required/>
                     </div>
-                    <div>
+                    <div className="formelement">
                         <label>Password</label>
                         <input type="password"
                                id="password"

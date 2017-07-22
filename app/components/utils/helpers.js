@@ -31,7 +31,6 @@ const helpers = {
     },
 
     makepost: (data) => {
-        console.log(data);
         return axios.post('/makepost', data)
     }
 };
