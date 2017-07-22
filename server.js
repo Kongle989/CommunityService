@@ -1,9 +1,12 @@
+// mongodb://heroku_rz4wsmbt:kjr0ci1invp6cfc1m28u5cr1ft@ds031597.mlab.com:31597/heroku_rz4wsmbt
+
+
 let express = require("express"),
     bodyParser = require("body-parser"),
     logger = require("morgan"),
     mongoose = require("mongoose"),
     app = express(),
-    url = 'mongodb://localhost/helpinghand',
+    url = 'mongodb://heroku_rz4wsmbt:kjr0ci1invp6cfc1m28u5cr1ft@ds031597.mlab.com:31597/heroku_rz4wsmbt',
     users = require('./models/users'),
     posts = require('./models/posts');
 
@@ -60,7 +63,6 @@ app.get('/getposts', (req,res) => {
 });
 
 app.post('/makepost', (req, res) => {
-    console.log('i making', req.body);
    posts.create({
        title: req.body.title,
        content: req.body.content,
