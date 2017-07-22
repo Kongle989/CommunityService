@@ -1,6 +1,5 @@
 let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
-    UsersSchema = require('./users'),
 
     PostsSchema = new Schema({
 

@@ -4,7 +4,8 @@ let express = require("express"),
     mongoose = require("mongoose"),
     app = express(),
     url = 'mongodb://localhost/helpinghand',
-    users = require('./models/users');
+    users = require('./models/users'),
+    posts = require('./models/posts');
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -40,6 +41,27 @@ app.get('/logon', (req, res) => {
 
 app.post('/create', (req, res) => {
     users.create(req.body);
+});
+
+app.get('/getposts', (req,res) => {
+    posts.find().populate('uid').then(posts => {
+        console.log(posts);
+    })
+});
+
+app.post('/makepost', (req, res) => {
+   console.log(req.body);
+   posts.create({
+       title: req.body.title,
+       content: req.body.content,
+       uid: mongoose.Types.ObjectId(req.body.uid)
+   }).then(doc => {
+       console.log('post doc', doc);
+       users.update({_id: doc.uid}, {$push: {pid: doc._id}})
+           .then(userdoc=> {
+               console.log('userdoc', userdoc);
+           })
+   })
 });
 
 app.get('*', (req, res) => {

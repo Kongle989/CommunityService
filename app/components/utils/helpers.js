@@ -8,7 +8,7 @@ const helpers = {
                 password: data.password
             }
         }).then(data => {
-                return data.data;
+            return data.data;
         });
 
     },
@@ -22,6 +22,17 @@ const helpers = {
             .then(response => {
                 return response.data;
             })
+    },
+
+    getposts: () => {
+        return axios.get('/getposts').then(data => {
+            return data.data;
+        })
+    },
+
+    makepost: (data) => {
+        console.log(data);
+        return axios.post('/makepost', data)
     }
 };
 

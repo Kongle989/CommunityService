@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import Loginsignup from './children/LoginSignup';
-// import Posts from './children/Posts'
+import Posts from './children/Posts'
 // import Profile from './children/Profile'
 
 export default class Main extends React.Component {
@@ -9,6 +9,8 @@ export default class Main extends React.Component {
     constructor(props) {
 
         super(props);
+
+        console.log(this);
 
         this.state = {
             id: "",
@@ -37,36 +39,43 @@ export default class Main extends React.Component {
             name: "",
             age: "",
             zip: ""
-        })
+        },this.props.history.push('/'));
     }
 
     render() {
         let loginButton;
-        if (this.state.id === "") {
-            loginButton = <Link to="/login"><button>Login</button></Link>;
+        if (this.props.history.location.pathname !== "/login" &&
+            this.props.history.location.pathname !== "/login/signup") {
+            if (this.state.id === "") {
+                loginButton = <Link to="/login">
+                    <button>Login</button>
+                </Link>;
+            }
+            else {
+                loginButton = <div>
+                    <button onClick={this.logout}>Logout</button>
+                    <Link to="/posts">
+                        <button>Posts</button>
+                    </Link>
+                    <Link to="/profile">
+                        <button>Profile</button>
+                    </Link>
+                </div>
+            }
         }
-        else {
-            loginButton = <button onClick={this.logout}>Logout</button>;
-        }
-
         return (
             <div className="Main">
                 <h1>Let's get some help!</h1>
 
                 {loginButton}
-                <Link to="/posts">
-                    <button>Posts</button>
-                </Link>
-                <Link to="/profile">
-                    <button>Profile</button>
-                </Link>
 
                 <Route path='/login'
                        render={({history, location}) => <Loginsignup
                            location={location}
                            history={history}
                            setUser={this.setUser}/>}/>
-                {/*<Route path='/posts' component={Posts}/>*/}
+                <Route exact path='/posts'
+                       render={() => <Posts user={this.state} />}/>
                 {/*<Route path='/profile' component={Profile}/>*/}
 
             </div>
